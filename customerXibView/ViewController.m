@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "SliderView.h"
 @interface ViewController ()
 
 @end
@@ -16,14 +16,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    SliderView *sliderView = [ [ SliderView alloc ] init];
+    sliderView.backgroundColor = [ UIColor blueColor ];
+    
+    [self.view addSubview: sliderView ];
+    sliderView.center = CGPointMake(10, 50);
+    
+    // Turn off autosizing masks
+    sliderView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+ 
+    //1. pin to bottom
+    [ self.view addConstraint:[NSLayoutConstraint constraintWithItem:sliderView
+                                                           attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0 ] ];
+  
+    
+    //2. pin to cneter x
+    
+    [ self.view addConstraint:[NSLayoutConstraint constraintWithItem:sliderView
+                                                           attribute:NSLayoutAttributeCenterX
+                                                           relatedBy:NSLayoutRelationEqual
+                                                            toItem:self.view
+                                                           attribute:NSLayoutAttributeCenterX
+                                                          multiplier:1.0 constant:0.0] ];
+   
+    
+    
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 @end
